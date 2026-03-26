@@ -2384,6 +2384,7 @@ textarea {
     font-family: "Sora", sans-serif;
     font-size: 1.18rem;
     color: var(--navy-950);
+    overflow-wrap: anywhere;
 }
 
 .project-card p {
@@ -2671,6 +2672,7 @@ textarea.form-control {
     font-size: 1.95rem;
     font-weight: 800;
     color: var(--navy-950);
+    overflow-wrap: anywhere;
 }
 
 .section-dark .cta-banner h3 {
@@ -2940,6 +2942,7 @@ textarea.form-control {
     font-size: 2rem;
     font-weight: 800;
     color: var(--navy-950);
+    overflow-wrap: anywhere;
 }
 
 .references-panel-head p {
@@ -3043,6 +3046,7 @@ textarea.form-control {
 .portfolio-featured-card h3,
 .portfolio-project-card h3 {
     margin: 0;
+    overflow-wrap: anywhere;
 }
 
 .portfolio-featured-card p,
@@ -3338,6 +3342,7 @@ textarea.form-control {
     font-family: "Sora", sans-serif;
     font-size: 1rem;
     color: var(--white);
+    overflow-wrap: anywhere;
 }
 
 .footer-column p {
@@ -3594,6 +3599,8 @@ a.footer-contact:focus {
         inset: var(--header-height) 16px auto;
         display: grid;
         gap: 8px;
+        max-height: calc(100vh - var(--header-height) - 32px);
+        overflow-y: auto;
         padding: 18px;
         border-radius: 24px;
         background: rgba(255, 255, 255, 0.98);
@@ -3609,6 +3616,11 @@ a.footer-contact:focus {
         opacity: 1;
         transform: translateY(0);
         pointer-events: auto;
+    }
+
+    .site-nav::-webkit-scrollbar {
+        width: 0;
+        height: 0;
     }
 
     .nav-link {
@@ -3720,6 +3732,11 @@ a.footer-contact:focus {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
+    .section-label {
+        font-size: 1.24rem;
+        letter-spacing: 0.12em;
+    }
+
     .team-showcase-card,
     .team-showcase-card-wide {
         grid-column: span 6;
@@ -3775,6 +3792,24 @@ a.footer-contact:focus {
         width: 110px;
         height: 110px;
         border-radius: 24px;
+    }
+
+    .hero-slide {
+        transform: none;
+    }
+
+    .hero-slide::before {
+        inset: 0;
+    }
+
+    .hero-slide-media,
+    .hero-slide.is-active .hero-slide-media {
+        transform: none;
+    }
+
+    .page-banner-about .page-banner-media img {
+        transform: none;
+        object-position: center 38%;
     }
 
     .display-title {
@@ -3841,10 +3876,51 @@ a.footer-contact:focus {
         flex-direction: column;
     }
 
+    .references-panel-head > * {
+        min-width: 0;
+    }
+
+    .references-panel-head p {
+        max-width: none;
+    }
+
     .references-panel-head h3 {
         font-size: 1.72rem;
     }
 
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .tab-shell,
+    .filter-shell,
+    .references-tab-shell,
+    .portfolio-tabs-shell {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-bottom: 4px;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .tab-shell::-webkit-scrollbar,
+    .filter-shell::-webkit-scrollbar,
+    .references-tab-shell::-webkit-scrollbar,
+    .portfolio-tabs-shell::-webkit-scrollbar {
+        display: none;
+    }
+
+    .tab-button,
+    .filter-button {
+        flex: 0 0 auto;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 1199px) {
+    .service-domain-panel-flat .service-domain-layout {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 767px) {
@@ -3875,6 +3951,11 @@ a.footer-contact:focus {
         font-size: 0.68rem;
         letter-spacing: 0.04em;
         max-width: 132px;
+    }
+
+    .section-label {
+        font-size: 1.06rem;
+        letter-spacing: 0.1em;
     }
 
     .page-banner-about .about-cover-summary .panel-badge {
@@ -4121,6 +4202,10 @@ a.footer-contact:focus {
         min-height: 320px;
     }
 
+    .service-domain-panel-flat .service-domain-layout {
+        gap: 18px;
+    }
+
     .team-showcase-body {
         inset: auto 14px 14px;
         padding: 16px 16px 14px;
@@ -4187,6 +4272,11 @@ a.footer-contact:focus {
 @media (max-width: 575px) {
     :root {
         --container-pad: 16px;
+    }
+
+    .section-label {
+        font-size: 0.94rem;
+        letter-spacing: 0.09em;
     }
 
     .footer-shell {
