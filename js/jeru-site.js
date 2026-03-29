@@ -491,6 +491,131 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    var galleryModal = document.querySelector("[data-gallery-modal]");
+    if (galleryModal) {
+        var galleryTitle = galleryModal.querySelector("[data-gallery-title]");
+        var galleryText = galleryModal.querySelector("[data-gallery-text]");
+        var galleryImage = galleryModal.querySelector("[data-gallery-image]");
+        var galleryThumbs = galleryModal.querySelector("[data-gallery-thumbs]");
+        var galleryPrev = galleryModal.querySelector("[data-gallery-prev]");
+        var galleryNext = galleryModal.querySelector("[data-gallery-next]");
+        var galleryClose = galleryModal.querySelector("[data-gallery-close]");
+        var galleryItems = [];
+        var galleryIndex = 0;
+
+        var renderGallery = function () {
+            if (!galleryItems.length || !galleryImage || !galleryThumbs) {
+                return;
+            }
+
+            galleryImage.src = galleryItems[galleryIndex];
+            galleryImage.alt = galleryTitle ? galleryTitle.textContent : "";
+            galleryThumbs.innerHTML = "";
+
+            galleryItems.forEach(function (item, index) {
+                var thumbButton = document.createElement("button");
+                var thumbImage = document.createElement("img");
+
+                thumbButton.type = "button";
+                thumbButton.className = "portfolio-gallery-thumb" + (index === galleryIndex ? " is-active" : "");
+                thumbButton.setAttribute("aria-label", "View image " + (index + 1));
+
+                thumbImage.src = item;
+                thumbImage.alt = "";
+
+                thumbButton.appendChild(thumbImage);
+                thumbButton.addEventListener("click", function () {
+                    galleryIndex = index;
+                    renderGallery();
+                });
+
+                galleryThumbs.appendChild(thumbButton);
+            });
+        };
+
+        var closeGallery = function () {
+            galleryModal.hidden = true;
+            document.body.classList.remove("gallery-open");
+        };
+
+        var openGallery = function (card) {
+            var image = card.querySelector(".project-thumb");
+            if (!image) {
+                return;
+            }
+
+            var cardTitle = card.querySelector("h3");
+            var cardText = card.querySelector("p");
+            var sourceImages = card.getAttribute("data-gallery-images");
+
+            galleryItems = sourceImages ? sourceImages.split("|") : [image.getAttribute("src")];
+            galleryIndex = 0;
+
+            if (galleryTitle) {
+                galleryTitle.textContent = cardTitle ? cardTitle.textContent.trim() : "Project gallery";
+            }
+
+            if (galleryText) {
+                galleryText.textContent = cardText ? cardText.textContent.trim() : "";
+            }
+
+            galleryModal.hidden = false;
+            document.body.classList.add("gallery-open");
+            renderGallery();
+        };
+
+        document.querySelectorAll(".page-work .project-card").forEach(function (card) {
+            if (!card.querySelector(".project-thumb")) {
+                return;
+            }
+
+            card.classList.add("is-clickable");
+            card.tabIndex = 0;
+            card.setAttribute("data-gallery-label", document.documentElement.lang === "en" ? "View gallery" : "Voir la galerie");
+
+            card.addEventListener("click", function () {
+                openGallery(card);
+            });
+
+            card.addEventListener("keydown", function (event) {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    openGallery(card);
+                }
+            });
+        });
+
+        if (galleryPrev) {
+            galleryPrev.addEventListener("click", function () {
+                galleryIndex = (galleryIndex - 1 + galleryItems.length) % galleryItems.length;
+                renderGallery();
+            });
+        }
+
+        if (galleryNext) {
+            galleryNext.addEventListener("click", function () {
+                galleryIndex = (galleryIndex + 1) % galleryItems.length;
+                renderGallery();
+            });
+        }
+
+        if (galleryClose) {
+            galleryClose.addEventListener("click", closeGallery);
+        }
+
+        galleryModal.addEventListener("click", function (event) {
+            if (event.target === galleryModal) {
+                closeGallery();
+            }
+        });
+
+        document.addEventListener("keydown", function (event) {
+            if (!galleryModal.hidden && event.key === "Escape") {
+                closeGallery();
+            }
+        });
+    }
+
     if (contactForm) {
         var syncSummary = function () {
             var fields = {
@@ -507,12 +632,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     return;
                 }
 
+                var emptyLabel = target.getAttribute("data-empty") || (document.documentElement.lang === "en" ? "To be confirmed" : "À préciser");
+
                 var value = source.value.trim();
                 if (source.tagName === "SELECT") {
                     value = source.options[source.selectedIndex].text;
                 }
 
-                target.textContent = value || "À préciser";
+                target.textContent = value || emptyLabel;
             });
         };
 
