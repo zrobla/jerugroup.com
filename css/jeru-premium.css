@@ -165,7 +165,7 @@ textarea {
 .site-brand-name {
     display: block;
     font-family: "Sora", sans-serif;
-    font-size: 1.02rem;
+    font-size: 1.2rem;
     font-weight: 800;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -173,6 +173,24 @@ textarea {
     max-width: 240px;
     min-width: 0;
     overflow-wrap: anywhere;
+}
+
+.site-header .site-brand-name {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 4px;
+    line-height: 1.02;
+}
+
+.site-header .site-brand-name::after {
+    content: "construction - immobilier - logistique";
+    display: block;
+    font-size: 0.96rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: none;
+    color: rgba(10, 74, 112, 0.78);
+    white-space: nowrap;
 }
 
 .menu-toggle {
@@ -3710,9 +3728,14 @@ a.footer-contact:focus {
     }
 
     .site-brand-name {
-        font-size: 0.82rem;
+        font-size: 0.96rem;
         letter-spacing: 0.06em;
         max-width: 190px;
+    }
+
+    .site-header .site-brand-name::after {
+        font-size: 0.76rem;
+        letter-spacing: 0.025em;
     }
 
     .site-brand {
@@ -3948,9 +3971,15 @@ a.footer-contact:focus {
     }
 
     .site-brand-name {
-        font-size: 0.68rem;
+        font-size: 0.8rem;
         letter-spacing: 0.04em;
         max-width: 132px;
+    }
+
+    .site-header .site-brand-name::after {
+        font-size: 0.6rem;
+        letter-spacing: 0.015em;
+        white-space: normal;
     }
 
     .section-label {
