@@ -649,10 +649,54 @@ document.addEventListener("DOMContentLoaded", function () {
 
         contactForm.addEventListener("submit", function (event) {
             event.preventDefault();
+
+            var submitBtn = contactForm.querySelector('button[type="submit"]');
             var success = document.querySelector(".form-success");
-            if (success) {
-                success.hidden = false;
+            var errorEl = document.querySelector(".form-error");
+            var btnText = submitBtn ? submitBtn.textContent : "";
+
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Envoi en cours…";
             }
+            if (errorEl) errorEl.hidden = true;
+            if (success) success.hidden = true;
+
+            var formData = new FormData(contactForm);
+            formData.append("_captcha", "false");
+            formData.append("_template", "table");
+            formData.append("_subject", "Nouvelle demande projet — " + (formData.get("full_name") || "Visiteur"));
+
+            fetch("https://formsubmit.co/ajax/info@jerugroup.net", {
+                method: "POST",
+                headers: { "Accept": "application/json" },
+                body: formData
+            })
+            .then(function (res) { return res.json(); })
+            .then(function (data) {
+                if (data.success === "true" || data.success === true) {
+                    if (success) success.hidden = false;
+                    contactForm.reset();
+                    syncSummary();
+                } else {
+                    if (errorEl) {
+                        errorEl.textContent = data.message || "Une erreur est survenue.";
+                        errorEl.hidden = false;
+                    }
+                }
+            })
+            .catch(function () {
+                if (errorEl) {
+                    errorEl.textContent = "Erreur réseau. Veuillez réessayer.";
+                    errorEl.hidden = false;
+                }
+            })
+            .finally(function () {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = btnText;
+                }
+            });
         });
     }
 });

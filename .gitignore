@@ -1,0 +1,18 @@
+# Credentials
+emails credentials.txt
+codex-resume.txt
+
+# Markdown docs
+*.md
+
+# macOS junk
+.DS_Store
+._*
+
+# PHP (not used on hosting)
+php/
+
+# Editor
+*.swp
+*.swo
+*~

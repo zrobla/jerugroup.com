@@ -168,4 +168,54 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://jerugroup.com/en/import-export-approvisionnement.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://jerugroup.com/import-export-approvisionnement.html"/>
   </url>
+  <!-- Blog articles FR/EN -->
+  <url>
+    <loc>https://jerugroup.com/blog/plan-3d-chantier-premium.html</loc>
+    <lastmod>2026-04-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://jerugroup.com/blog/plan-3d-chantier-premium.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jerugroup.com/en/blog/3d-plan-premium-construction.html"/>
+  </url>
+  <url>
+    <loc>https://jerugroup.com/en/blog/3d-plan-premium-construction.html</loc>
+    <lastmod>2026-04-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://jerugroup.com/blog/plan-3d-chantier-premium.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jerugroup.com/en/blog/3d-plan-premium-construction.html"/>
+  </url>
+  <url>
+    <loc>https://jerugroup.com/blog/rehabilitation-actif-immobilier.html</loc>
+    <lastmod>2026-04-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://jerugroup.com/blog/rehabilitation-actif-immobilier.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jerugroup.com/en/blog/asset-rehabilitation-value.html"/>
+  </url>
+  <url>
+    <loc>https://jerugroup.com/en/blog/asset-rehabilitation-value.html</loc>
+    <lastmod>2026-04-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://jerugroup.com/blog/rehabilitation-actif-immobilier.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jerugroup.com/en/blog/asset-rehabilitation-value.html"/>
+  </url>
+  <url>
+    <loc>https://jerugroup.com/blog/partenaires-techniques-qualite.html</loc>
+    <lastmod>2026-04-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://jerugroup.com/blog/partenaires-techniques-qualite.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jerugroup.com/en/blog/technical-partners-quality.html"/>
+  </url>
+  <url>
+    <loc>https://jerugroup.com/en/blog/technical-partners-quality.html</loc>
+    <lastmod>2026-04-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://jerugroup.com/blog/partenaires-techniques-qualite.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jerugroup.com/en/blog/technical-partners-quality.html"/>
+  </url>
+  <!-- Project pages (FR only) -->
+  <url>
+    <loc>https://jerugroup.com/projets/immeuble-r2-golf4.html</loc>
+    <lastmod>2026-04-04</lastmod>
+  </url>
+  <url>
+    <loc>https://jerugroup.com/projets/villa-duplex-akouedo.html</loc>
+    <lastmod>2026-04-04</lastmod>
+  </url>
+  <url>
+    <loc>https://jerugroup.com/projets/rehabilitation-villa-triplex-ouaga.html</loc>
+    <lastmod>2026-04-04</lastmod>
+  </url>
 </urlset>
